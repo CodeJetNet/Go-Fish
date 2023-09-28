@@ -15,7 +15,12 @@ export class Game {
      */
     createPlayers() {
         this.players.push(new Player('Player 0'));
-        this.players.push(new Player('The Computer'));
+        this.players.push(new Player('The Computer', true));
+    }
+
+    currentPlayer()
+    {
+        return this.players[0];
     }
 
     dealCards() {

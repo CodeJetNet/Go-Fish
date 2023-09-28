@@ -30,3 +30,5 @@ To run:
 bun run index.ts
 ```
 
+# Credits
+* Card assets from https://github.com/hayeah/playing-cards-assets

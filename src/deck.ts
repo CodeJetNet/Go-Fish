@@ -3,7 +3,7 @@ import {Card} from "./card"
 export class Deck {
     cards: Card[] = [];
     suits = ['hearts', 'diamonds', 'spades', 'clubs'];
-    ranks = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2'];
+    ranks = ['ace', 'king', 'queen', 'jack', '10', '9', '8', '7', '6', '5', '4', '3', '2'];
     constructor() {
         this.createDeck();
     }

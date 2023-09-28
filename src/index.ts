@@ -1,9 +1,7 @@
-import * as PIXI from 'pixi.js';
 
-const app = new PIXI.Application({
-    background: '#1099bb',
-    resizeTo: window,
-});
+import {App} from './app';
+
+const app = new App();
 
 // Deck of cards
 // number of players
@@ -21,7 +19,3 @@ const app = new PIXI.Application({
 // Player
 // Card
 // Game
-
-
-
-let iCanvas = document.body.appendChild(app.view);
