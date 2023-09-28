@@ -6,6 +6,7 @@ export class Deck {
     ranks = ['ace', 'king', 'queen', 'jack', '10', '9', '8', '7', '6', '5', '4', '3', '2'];
     constructor() {
         this.createDeck();
+        this.shuffle();
     }
 
     createDeck() {

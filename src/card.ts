@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+
 export class Card {
     suit: string;
     rank: string;
@@ -7,5 +8,10 @@ export class Card {
         this.suit = suit;
         this.rank = rank;
         this.asset = PIXI.Sprite.from(`assets/cards/${rank}_of_${suit}.png`);
+    }
+
+    setCardWidth(width: number) {
+        this.asset.width = width;
+        this.asset.height = width * 1.45;
     }
 }

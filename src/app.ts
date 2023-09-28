@@ -21,8 +21,12 @@ export class App {
 
     start() {
         // Layout cards for player 1 on the screen.
+        let cards = 0;
         for(let card of this.game.currentPlayer().hand) {
+            card.setCardWidth(100);
+            card.asset.x =  cards * 100;
             this.app.stage.addChild(card.asset);
+            cards++;
         }
     }
 }
