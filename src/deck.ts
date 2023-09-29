@@ -34,4 +34,8 @@ export class Deck {
         }
         throw new Error('No more cards in the deck.');
     }
+
+    hasRemainingCards(): boolean {
+        return this.cards.length > 0;
+    }
 }

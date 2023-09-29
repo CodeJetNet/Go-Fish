@@ -9,4 +9,13 @@ export class Player {
         this.name = name;
         this.isComputer = isComputer;
     }
+
+    getCardsWithRank(card: Card): Card[] {
+        // Get all cards with matching rank from hand.
+        let cards = this.hand.filter((c) => c.rank === card.rank);
+        // Remove the cards from the hand.
+        this.hand = this.hand.filter((c) => c.rank !== card.rank);
+        // Return the cards.
+        return cards;
+    }
 }

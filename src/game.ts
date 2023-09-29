@@ -18,9 +18,12 @@ export class Game {
         this.players.push(new Player('The Computer', true));
     }
 
-    currentPlayer()
-    {
+    currentPlayer() {
         return this.players[0];
+    }
+
+    computerPlayer(): Player {
+        return this.players[1];
     }
 
     dealCards() {
