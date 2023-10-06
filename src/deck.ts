@@ -2,17 +2,15 @@ import {Card} from "./card"
 
 export class Deck {
     cards: Card[] = [];
-    suits = ['hearts', 'diamonds', 'spades', 'clubs'];
-    ranks = ['ace', 'king', 'queen', 'jack', '10', '9', '8', '7', '6', '5', '4', '3', '2'];
     constructor() {
         this.createDeck();
         this.shuffle();
     }
 
     createDeck() {
-        for (let i = 0; i < this.suits.length; i++) {
-            for (let j = 0; j < this.ranks.length; j++) {
-                this.cards.push(new Card(this.suits[i], this.ranks[j]));
+        for (let i = 0; i < Card.suits.length; i++) {
+            for (let j = 0; j < Card.ranks.length; j++) {
+                this.cards.push(new Card(Card.suits[i], Card.ranks[j]));
             }
         }
     }

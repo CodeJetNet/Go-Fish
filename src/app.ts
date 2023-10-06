@@ -25,6 +25,7 @@ export class App {
 
     layoutPlayerCards() {
         // Clear the stage before laying out all the player cards.
+        // This can't be how it should be done.
         this.app.stage.children.forEach((c) => {
             this.app.stage.removeChild(c)
         })
@@ -33,7 +34,7 @@ export class App {
         let cards = 0;
         let row = 0;
         let cardsPerRow = Math.floor(this.app.view.width / 100);
-        for (let card of this.game.currentPlayer().hand) {
+        for (let card of this.game.currentPlayer().getHand()) {
             card.setCardWidth(100);
             if (cards > cardsPerRow) {
                 cards = 0;
@@ -45,7 +46,7 @@ export class App {
             card.asset.cursor = 'pointer';
             if (card.asset.eventNames().length == 0) {
                 // the pointerdown event has not been added.
-                card.asset.on('pointerdown', (e: any) => {
+                card.asset.on('pointerdown', () => {
                     // Ask for the card.
                     this.askForCard(this.game.currentPlayer(),this.game.computerPlayer(), card);
                     // If other player doesn't have the card, Go Fish.
@@ -67,7 +68,7 @@ export class App {
                 // We're asking the computer for the card, so let the human know the result.
                 alert("Go Fish.");
             } else {
-                alert("The computer asked for a card, but you don't have it");
+                alert(`The computer asked for a ${card.getReadableRank()}, but you don't have it`);
             }
             this.goFish(player);
             return;
@@ -77,7 +78,7 @@ export class App {
         if(player == this.game.currentPlayer()) {
             alert("You got a card! Play again.");
         } else {
-            alert("You lost a card:" + cards[0].rank);
+            alert("You lost a card:" + cards[0].getReadableRank());
         }
         this.layoutPlayerCards();
     }

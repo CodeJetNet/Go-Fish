@@ -18,4 +18,9 @@ export class Player {
         // Return the cards.
         return cards;
     }
+
+    getHand() {
+        this.hand.sort((a,b) => a.rank - b.rank);
+        return this.hand;
+    }
 }
