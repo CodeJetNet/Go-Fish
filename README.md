@@ -27,7 +27,7 @@ bun run build
 To run:
 
 ```bash
-bun run index.ts
+bun start
 ```
 
 # Credits
