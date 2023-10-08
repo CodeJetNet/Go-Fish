@@ -23,16 +23,16 @@ export class Card {
         let rank = this.rank.toString();
         switch (this.rank) {
             case 11:
-                rank = 'Jack';
+                rank = 'gack';
                 break;
             case 12:
-                rank = 'Queen';
+                rank = 'queen';
                 break;
             case 13:
-                rank = 'King';
+                rank = 'king';
                 break;
             case 14:
-                rank = 'Ace';
+                rank = 'ace';
                 break;
         }
 
