@@ -33,3 +33,4 @@ bun start
 # Credits
 * Card assets from https://github.com/hayeah/playing-cards-assets
 * Favicon from https://pixabay.com/illustrations/clipart-fish-sign-icon-cartoon-3418130/
+* Awesome things - Jesse Bush
