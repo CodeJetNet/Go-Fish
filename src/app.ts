@@ -88,8 +88,7 @@ export class App {
 
     goFish(player: Player) {
         if (!this.game.deck.hasRemainingCards()) {
-            // @todo - run game end.
-            alert('game over');
+            this.gameOver();
             return;
         }
 
@@ -101,9 +100,20 @@ export class App {
     }
 
     computerPlay() {
-        // Computer player selects a card from their hand.
+        // @todo - Support different difficulty levels.  If the computer selects random every time, it's not very difficult to beat.
         let card = this.game.computerPlayer().hand[Math.floor(Math.random() * this.game.computerPlayer().hand.length)];
         // Computer player selects a player to ask for the card.
         this.askForCard(this.game.computerPlayer(), this.game.currentPlayer(), card);
+    }
+
+    gameOver() {
+        if(this.game.players[0].books > this.game.players[1].books) {
+            alert("You win!");
+        } else {
+            alert("You lose!");
+        }
+
+        this.game = new Game();
+        this.start();
     }
 }

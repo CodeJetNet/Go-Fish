@@ -38,6 +38,5 @@ export class Player {
             this.books++;
             this.getAndRemoveCardsWithRank(card);
         }
-        console.log(potentialBook);
     }
 }
