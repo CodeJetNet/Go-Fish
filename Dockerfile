@@ -4,7 +4,7 @@ WORKDIR /app
 COPY . /app
 
 RUN bun install
-RUN bun run start
+RUN bun run build
 
 EXPOSE 8080
 
