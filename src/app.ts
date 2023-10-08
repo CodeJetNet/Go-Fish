@@ -62,10 +62,10 @@ export class App {
      * This could probably be in the game itself. Not the app.
      */
     askForCard(player: Player, opponent: Player, card: Card) {
-        let cards = opponent.getCardsWithRank(card);
+        let cards = opponent.getAndRemoveCardsWithRank(card);
         if (!cards.length) {
             if (player == this.game.currentPlayer()) {
-                // We're asking the computer for the card, so let the human know the result.
+                // We're asking the computer for the card, so let the human know they fail at life.
                 alert("Go Fish.");
             } else {
                 alert(`The computer asked for a ${card.getReadableRank()}, but you don't have it`);
@@ -74,10 +74,13 @@ export class App {
             return;
         }
 
-        player.hand = player.hand.concat(cards);
+        cards.forEach((c) => {
+            player.addCard(c);
+        });
         if(player == this.game.currentPlayer()) {
             alert("You got a card! Play again.");
         } else {
+            // @todo - Computer should play again.
             alert("You lost a card:" + cards[0].getReadableRank());
         }
         this.layoutPlayerCards();
@@ -85,11 +88,12 @@ export class App {
 
     goFish(player: Player) {
         if (!this.game.deck.hasRemainingCards()) {
-            // Game over.
+            // @todo - run game end.
+            alert('game over');
             return;
         }
 
-        player.hand.push(this.game.deck.dealCard());
+        player.addCard(this.game.deck.dealCard());
         this.layoutPlayerCards();
         if(player == this.game.currentPlayer()) {
             this.computerPlay();
