@@ -19,6 +19,10 @@ export class Card {
         this.asset.height = width * 1.45;
     }
 
+    getCardHeight(): number {
+        return this.asset.height;
+    }
+
     getReadableRank() {
         let rank = this.rank.toString();
         switch (this.rank) {

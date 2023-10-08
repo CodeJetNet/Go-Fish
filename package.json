@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "start": "http-server -p 8080",
-    "build": "bun build ./src/index.js --outdir ./build"
+    "build": "bun build ./src/index.js --outdir ./build",
+    "dev": "bun --watch build ./src/index.ts --outdir ./build"
   },
   "devDependencies": {
     "bun-types": "latest"

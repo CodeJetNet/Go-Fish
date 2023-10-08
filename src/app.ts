@@ -1,3 +1,5 @@
+/// <reference lib="dom" />
+/// <reference lib="dom.iterable" />
 import * as PIXI from "pixi.js";
 import {Game} from "./game";
 import {Card} from "./card";
@@ -6,6 +8,8 @@ import {Player} from "./player";
 export class App {
     app: PIXI.Application;
     game: Game;
+    cardOverlap: number = 40;
+    cardWidth: number = 150;
 
     constructor() {
         this.app = new PIXI.Application({
@@ -14,6 +18,7 @@ export class App {
         });
 
         this.game = new Game();
+        // @ts-ignore
         document.body.appendChild(this.app.view);
         this.start();
     }
@@ -30,25 +35,22 @@ export class App {
             this.app.stage.removeChild(c)
         })
 
-        // This is dumb, these cards should overlap, but sadly we're not professionals here.
+        // Determine starting placement in the middle of the screen
+        let screenWidth = window.innerWidth;
+        let handWidth = this.game.currentPlayer().getHand().length * this.cardOverlap + this.cardWidth - this.cardOverlap;
+        let startX = (screenWidth / 2) - (handWidth / 2);
         let cards = 0;
-        let row = 0;
-        let cardsPerRow = Math.floor(this.app.view.width / 20) - 1;
         for (let card of this.game.currentPlayer().getHand()) {
-            card.setCardWidth(100);
-            if (cards > cardsPerRow) {
-                cards = 0;
-                row++;
-            }
-            card.asset.x = cards * 20;
-            card.asset.y = row * 145;
+            card.setCardWidth(this.cardWidth);
+            card.asset.x = startX + cards * this.cardOverlap;
+            card.asset.y = window.innerHeight - card.getCardHeight() - 10;
             card.asset.eventMode = 'static';
             card.asset.cursor = 'pointer';
             if (card.asset.eventNames().length == 0) {
                 // the pointerdown event has not been added.
                 card.asset.on('pointerdown', () => {
                     // Ask for the card.
-                    this.askForCard(this.game.currentPlayer(),this.game.computerPlayer(), card);
+                    this.askForCard(this.game.currentPlayer(), this.game.computerPlayer(), card);
                     // If other player doesn't have the card, Go Fish.
                     // Let the computer player go.
                 });
@@ -77,7 +79,7 @@ export class App {
         cards.forEach((c) => {
             player.addCard(c);
         });
-        if(player == this.game.currentPlayer()) {
+        if (player == this.game.currentPlayer()) {
             alert("You got a card! Play again.");
         } else {
             // @todo - Computer should play again.
@@ -94,7 +96,7 @@ export class App {
 
         player.addCard(this.game.deck.dealCard());
         this.layoutPlayerCards();
-        if(player == this.game.currentPlayer()) {
+        if (player == this.game.currentPlayer()) {
             this.computerPlay();
         }
     }
@@ -107,7 +109,7 @@ export class App {
     }
 
     gameOver() {
-        if(this.game.players[0].books > this.game.players[1].books) {
+        if (this.game.players[0].books > this.game.players[1].books) {
             alert("You win!");
         } else {
             alert("You lose!");
