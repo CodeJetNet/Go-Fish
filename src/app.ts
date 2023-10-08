@@ -33,14 +33,14 @@ export class App {
         // This is dumb, these cards should overlap, but sadly we're not professionals here.
         let cards = 0;
         let row = 0;
-        let cardsPerRow = Math.floor(this.app.view.width / 100);
+        let cardsPerRow = Math.floor(this.app.view.width / 20) - 1;
         for (let card of this.game.currentPlayer().getHand()) {
             card.setCardWidth(100);
             if (cards > cardsPerRow) {
                 cards = 0;
                 row++;
             }
-            card.asset.x = cards * 100;
+            card.asset.x = cards * 20;
             card.asset.y = row * 145;
             card.asset.eventMode = 'static';
             card.asset.cursor = 'pointer';
